@@ -1,0 +1,57 @@
+PSM-root-policy
+allow service OKE to manage all-resources in tenancy
+
+Create container cluster - OKE
+
+Install and configure OCI CLI
+$ bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
+
+$/home/ubuntu/bin/oci setup config
+OCID (y.palomino@pucp.pe)
+ocid1.user.oc1..aaaaaaaahg4kmcnlrg46cry7dd3ijatwdpcpz4pamuftmw6istsch5eoinvq
+OCID (tenancy)
+ocid1.tenancy.oc1..aaaaaaaazw4rl2qtuoyxnug324qhehmj27dk4jn25seydsbzjld5xmeimdja
+region
+us-ashburn-1
+
+get the generated public key
+$ cat /home/ubuntu/.oci/oci_api_key_public.pem
+
+access kubeconfig
+instructions are at the OCI dashboard
+
+
+
+auth token (y.palomino@pucp.pe)
+ibDTca(pUatjCwo_9xcE
+tenancy object storage namespace
+idc6kcfnv2s3
+
+push a docker image in OCIR
+$ docker login -u idc6kcfnv2s3/y.palomino@pucp.pe iad.ocir.io (password is the auth token)
+$ docker tag alphaoffice-rest iad.ocir.io/idc6kcfnv2s3/alphaoffice-rest:v1
+$ docker push iad.ocir.io/idc6kcfnv2s3/alphaoffice-rest:v1
+
+
+localhost
+install kubectl (oci cli has to installed first)
+$ curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+$ chmod +x ./kubectl
+$ export KUBECONFIG=/home/junicode/Documents/oracle/workshops/monotomicro/monotomicrows/kubeconfig
+$ printenv
+$ ./kubectl cluster-info
+$ ./kubectl get nodes
+
+access kubernetes dashboard
+https://docs.cloud.oracle.com/iaas/Content/ContEng/Tasks/contengstartingk8sdashboard.htm
+$ ./kubectl proxy
+--> http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
+
+obtain an authentication token for the oke-admin service account
+$ ./kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep oke-admin | awk '{print $1}')
+
+create app in kubernetes dashboard
+test the alphaoffice rest service
+http://129.213.210.85/AlphaProductsRestService/webresources/restCall/
+
+

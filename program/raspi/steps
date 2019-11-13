@@ -1,0 +1,5 @@
+ssh tunnel (execute in the raspberry pi)
+ssh -f -N ubuntu@129.213.62.224 -L 9876:127.0.0.1:9876 -i /home/pi/madhack/ssh/oci_key
+
+see shh tunnels
+sudo lsof -i -n | egrep '\<ssh\>'

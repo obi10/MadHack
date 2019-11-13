@@ -1,0 +1,65 @@
+
+java socket_server &
+
+check process in specific port
+netstat -an | grep 9876
+ps -eaf |  grep socket
+
+kill $PID
+
+
+telnet localhost 9876
+
+more /etc/hosts
+
+
+
+create ssh tunnel
+$ ssh -f -N ubuntu@132.145.209.49 -L 8001:127.0.0.1:8001 -i ~/Documents/oracle/MadHack/ssh/oci_key
+see ssh tunnels
+$ sudo lsof -i -n | egrep '\<ssh\>'
+
+
+
+---do the docker login before the installing of docker-compose---
+
+$ docker login -u idu4fp3liu3m/junior.palomino@oracle.com iad.ocir.io
+~/.docker/config.json is created
+
+	
+run a docker container (detached mode)
+$ docker run -it -d --name restapi restapi_device-registry bash
+attach to docker container
+$ docker attach restapi
+
+start, build container
+$ docker-compose up -d
+update image
+$ docker-compose up -d --force-recreate --build
+
+
+
+
+$ scp -i ~/Documents/oracle/MadHack/ssh/oci_key -r /home/junicode/Documents/oracle/MadHack/program/rest_api2/ ubuntu@132.145.209.49:/home/ubuntu/madhack/
+
+
+http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
+
+eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJva2UtYWRtaW4tdG9rZW4ta2Joc2giLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoib2tlLWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiNmQxMzVkMTItMDU5My0xMWVhLTk5M2MtMGE1ODBhZWQ1YjVlIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOm9rZS1hZG1pbiJ9.d_jf_522IDaVKzJNVAWBCuWzlpA4sAHnDOyW9QOnRYflaRJ26sNHWKDXWpQjZhlzgCKoEk47rsU7KUoppwHhdkkeD7SBA2FX83Gzb8YomnrpKLmCJn_8NuCpQf_Ck_iKgmdsWn0pgrd-gOPApDdq_0-N-EIza_ODC5k3TgRqsMbmlLfgHEgt-UcAWcttqEtoNsto3nC8NTELqCQ4DG2DO4hdXwEU3k_kT3Jlp5ooHVe5WvntJzdObNClW-zdBvcbvh5EAV1H6zZdNxJ49V4745olEVysE6_TFUsfwx1e4vIG-CegRlr5ZageVI7SBaz1hqV5--cd9v_XGOLg7xjZSg
+
+
+
+iad.ocir.io/idu4fp3liu3m/madhack-rest
+
+
+
+
+http://150.136.128.66:5001/data
+
+
+
+
+
+
+
+
